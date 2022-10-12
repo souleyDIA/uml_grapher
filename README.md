@@ -1,7 +1,7 @@
 # Template for Maven based exercises
 
 ![CI](https://github.com/souleyDIA/uml_grapher/actions/workflows/build.yml/badge.svg)
-[![codecov](https://codecov.io/gh/souleyDIA/uml_grapher/branch/main/graph/badge.svg?token=HPSXLZN9J2)](https://codecov.io/gh/souleyDIA/uml_grapher)
+[![codecov](https://codecov.io/gh/souleyDIA/uml_grapher/branch/main/graph/badge.svg?token=34CI7K6WVV)](https://codecov.io/gh/souleyDIA/uml_grapher)
 
 ## Build the project
 
