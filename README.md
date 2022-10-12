@@ -1,7 +1,7 @@
 # Template for Maven based exercises
 
-[![build workflow](https://github.com/lernejo/maven_starter_template/actions/workflows/build.yml/badge.svg)](https://github.com/lernejo/maven_starter_template/actions)
-[![codecov](https://codecov.io/gh/lernejo/maven_starter_template/branch/main/graph/badge.svg)](https://codecov.io/gh/lernejo/maven_starter_template)
+![CI](https://github.com/souleyDIA/uml_grapher/actions/workflows/build.yml/badge.svg)
+[![codecov](https://codecov.io/gh/souleyDIA/uml_grapher/branch/main/graph/badge.svg?token=HPSXLZN9J2)](https://codecov.io/gh/souleyDIA/uml_grapher)
 
 ## Build the project
 
