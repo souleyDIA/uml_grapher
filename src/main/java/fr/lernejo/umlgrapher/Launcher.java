@@ -3,12 +3,6 @@ package fr.lernejo.umlgrapher;
 public class Launcher {
 
     public static void main(String[] args) {
-
-        if(args.length == 0) {
-            System.out.println("Please enter the name of the class to be analyzed");
-            return;
-        }
-
         String className = args[0];
         String graphType = GraphType.Mermaid.toString();
         String server = "http://localhost:1234";
@@ -24,11 +18,7 @@ public class Launcher {
                 server = args[i + 1];
             }
         }
-
-        System.out.println("Class name: " + className);
-        System.out.println("Graph type: " + graphType);
-        System.out.println("Server: " + server);
-
+     
         try {
             Class<?> cls = Class.forName(className);
             UmlGraph graph = new UmlGraph(cls);
@@ -39,4 +29,3 @@ public class Launcher {
         }
     }
 }
-// mvn compile exec:java -Dexec.args="-c=fr.lernejo.Sample" -Dgithub_token=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

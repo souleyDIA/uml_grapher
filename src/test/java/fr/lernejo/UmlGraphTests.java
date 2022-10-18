@@ -23,4 +23,25 @@ class UmlGraphTests {
 
     interface Machin {
     }
+
+    @Test
+    void parse_arguments() {
+        String[] args = new String[] {"-c", "fr.lernejo.Machin", "-g", "Mermaid",};
+
+        String className = args[0];
+        String graphType = GraphType.Mermaid.toString();
+
+        for(int i = 0; i < args.length; i++) {
+            if(args[i].equals("-c") || args[i].equals("--classes")) {
+                className = args[i + 1];
+            }
+            if(args[i].equals("-g") || args[i].equals("--graph-type")) {
+                graphType = args[i + 1];
+            }
+        }
+
+        Assertions.assertThat(className).isEqualTo("fr.lernejo.Machin");
+        Assertions.assertThat(graphType).isEqualTo("Mermaid");
+    }
+    
 }
