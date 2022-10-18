@@ -10,7 +10,12 @@ public class UmlGraph {
 
     public String as(GraphType type) {
         if (type == GraphType.Mermaid) {
-            return "classDiagram\nclass " + cls.getSimpleName() + " {\n<<interface>>\n}";
+            return """
+                classDiagram
+                class %s {
+                    <<interface>>
+                }
+                """.formatted(cls.getSimpleName());
         }
         return "";
     }
