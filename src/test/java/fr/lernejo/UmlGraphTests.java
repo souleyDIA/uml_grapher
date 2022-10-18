@@ -7,6 +7,7 @@ import fr.lernejo.umlgrapher.UmlGraph;
 import fr.lernejo.umlgrapher.GraphType;
 
 class UmlGraphTests {
+
     @Test
     void empty_interface_with_no_relation() {
         UmlGraph graph = new UmlGraph(Machin.class);
@@ -43,5 +44,11 @@ class UmlGraphTests {
         Assertions.assertThat(className).isEqualTo("fr.lernejo.Machin");
         Assertions.assertThat(graphType).isEqualTo("Mermaid");
     }
-    
+
+    @Test
+    void test_class_not_found() {
+        Assertions.assertThatThrownBy(() -> new UmlGraph(Class.forName("fr.lernejo.FakeClass")))
+            .isInstanceOf(ClassNotFoundException.class)
+            .hasMessage("fr.lernejo.FakeClass");
+    }    
 }
