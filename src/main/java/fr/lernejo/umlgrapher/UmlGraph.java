@@ -1,20 +1,17 @@
 package fr.lernejo.umlgrapher;
 
 public class UmlGraph {
-
-    public UmlGraph(Class<?>... classes) {
-        // TODO
+ 
+    private final Class<?> cls;
+ 
+    public UmlGraph(Class<?> cls) {
+        this.cls = cls;
     }
 
-    public  String as(GraphType type) {
-        if(type == GraphType.Mermaid) {
-            return """
-                classDiagram
-                class Machin {
-                    <<interface>>
-                }
-                """;
+    public String as(GraphType type) {
+        if (type == GraphType.Mermaid) {
+            return "classDiagram\nclass " + cls.getSimpleName() + " {\n<<interface>>\n}";
         }
-    return "";
+        return "";
     }
 } 
