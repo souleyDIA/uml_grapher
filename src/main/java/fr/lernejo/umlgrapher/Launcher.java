@@ -2,7 +2,7 @@ package fr.lernejo.umlgrapher;
 
 public class Launcher {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         String className = args[0];
         String graphType = GraphType.Mermaid.toString();
         String server = "http://localhost:1234";
@@ -18,14 +18,7 @@ public class Launcher {
                 server = args[i + 1];
             }
         }
-     
-        try {
-            Class<?> cls = Class.forName(className);
-            UmlGraph graph = new UmlGraph(cls);
-            String output = graph.as(GraphType.valueOf(graphType));
-            System.out.println(output);
-        } catch (ClassNotFoundException e) {
-            System.out.println("Class not found");
-        }
+        UmlGraph graph = new UmlGraph(Class.forName(className));
+        System.out.println(graph.as(GraphType.valueOf(graphType)));
     }
 }
