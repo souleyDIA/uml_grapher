@@ -10,7 +10,7 @@ import java.util.concurrent.Callable;
 public class Launcher implements Callable<Integer> {
     
     @Option(names = {"-s", "--server"}, description = "Start the server", defaultValue = "")
-    String serverURL;
+    private String serverURL;
 
     @Option(names = {"-c", "--classes"}, required = true, description = "Classes to analyse")
     private String classes;
