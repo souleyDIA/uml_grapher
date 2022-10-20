@@ -8,9 +8,6 @@ import java.util.concurrent.Callable;
 
 @Command(name = "java -jar umlgrapher.jar", mixinStandardHelpOptions = true, version = "1.0", description = "UMLGrapher")
 public class Launcher implements Callable<Integer> {
-    
-    @Option(names = {"-s", "--server"}, description = "Start the server", defaultValue = "")
-    private String serverURL;
 
     @Option(names = {"-c", "--classes"}, required = true, description = "Classes to analyse")
     private String classes;
