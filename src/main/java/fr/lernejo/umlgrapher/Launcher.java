@@ -1,24 +1,32 @@
 package fr.lernejo.umlgrapher;
 
-public class Launcher {
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
 
-    public static void main(String[] args) throws ClassNotFoundException {
-        String className = args[0];
-        String graphType = GraphType.Mermaid.toString();
-        String server = "http://localhost:1234";
+import java.util.concurrent.Callable;
 
-        for(int i = 0; i < args.length; i++) {
-            if(args[i].equals("-c") || args[i].equals("--classes")) {
-                className = args[i + 1];
-            }
-            if(args[i].equals("-g") || args[i].equals("--graph-type")) {
-                graphType = args[i + 1];
-            }
-            if(args[i].equals("-s") || args[i].equals("--server")) {
-                server = args[i + 1];
-            }
-        }
-        UmlGraph graph = new UmlGraph(Class.forName(className));
+@Command(name = "java -jar umlgrapher.jar", mixinStandardHelpOptions = true, version = "1.0", description = "UMLGrapher")
+public class Launcher implements Callable<Integer> {
+    
+    @Option(names = {"-s", "--server"}, description = "Start the server", defaultValue = "")
+    String serverURL;
+
+    @Option(names = {"-c", "--classes"}, required = true, description = "Classes to analyse")
+    private String classes;
+
+    @Option(names = {"-g", "--graph-type"}, defaultValue = "Mermaid", description = "Graph type")
+    private String graphType;
+
+    @Override
+    public Integer call() throws Exception {
+        UmlGraph graph = new UmlGraph(Class.forName(classes));
         System.out.println(graph.as(GraphType.valueOf(graphType)));
+        return 0;
+    }
+
+    public static void main(String... args) {
+        int exitCode = new CommandLine(new Launcher()).execute(args);
+        System.exit(exitCode);
     }
 }
