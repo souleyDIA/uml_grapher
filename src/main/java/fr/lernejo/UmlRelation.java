@@ -1,9 +1,9 @@
 package fr.lernejo;
 
 public class UmlRelation {
-    public final Class<?> from;
-    public final Class<?> to;
-    public final Type type;
+    private final Class<?> from;
+    private final Class<?> to;
+    private final Type type;
 
     public UmlRelation(Class<?> from, Class<?> to, Type type) {
         this.from = from;
