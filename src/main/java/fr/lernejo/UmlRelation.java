@@ -1,5 +1,7 @@
 package fr.lernejo;
 
+import java.util.Objects;
+
 public class UmlRelation {
     private final Class<?> from;
     private final Class<?> to;
@@ -13,7 +15,7 @@ public class UmlRelation {
 
     @Override
     public int hashCode() {
-        return from.hashCode() + to.hashCode() + type.hashCode();
+        return Objects.hash(from, to, type);
     }
 
     @Override
@@ -28,5 +30,4 @@ public class UmlRelation {
         extend,
         implement,
     }
-  
 }
