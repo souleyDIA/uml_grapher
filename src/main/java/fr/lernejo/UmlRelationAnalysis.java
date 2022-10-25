@@ -36,8 +36,10 @@ public class UmlRelationAnalysis {
             analyze(i);
         }
         if (cls.getSuperclass() != null) {
-            relations.add(new UmlRelation(cls, cls.getSuperclass(), UmlRelation.Type.extend));
-            analyze(cls.getSuperclass());
+            if (!cls.getSuperclass().equals(Object.class)) {
+                relations.add(new UmlRelation(cls, cls.getSuperclass(), UmlRelation.Type.extend));
+                analyze(cls.getSuperclass());
+            }
         }
     }
 

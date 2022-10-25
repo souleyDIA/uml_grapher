@@ -10,7 +10,7 @@ public class ParameterFormater implements IParamterFormater{
 
     @Override
     public String format(Parameter parameter) {
-        return parameter.getName() + " : " + parameter.getType().getSimpleName();
+        return parameter.getType().getSimpleName() + " : " + parameter.getName(); 
     }
 
     @Override
