@@ -19,7 +19,7 @@ public class UmlGraph {
             UmlRelationAnalysis analysis = new UmlRelationAnalysis(List.of(cls));
             RelationFormater formater = new RelationFormater();
             ClassFormater classFormater = new ClassFormater();
-            return "classDiagram\r" + classFormater.format(analysis.listClasses()) + "\r" + formater.format(analysis.listRelations());
+            return "classDiagram\n" + classFormater.format(analysis.listClasses()) + "\n" + formater.format(analysis.listRelations());
         }
         return "";
     }

@@ -17,7 +17,8 @@ public class ClassFormater implements IClassFormater {
 
     @Override
     public String format(Class<?> clazz) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("class ");
+        sb.append(clazz.getSimpleName());
         sb.append("{\n");
         sb.append(
             Stream.of(member(clazz).split("\n")).filter(s -> !s.isEmpty())

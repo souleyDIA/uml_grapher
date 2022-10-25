@@ -22,7 +22,7 @@ public class MethodFormater implements IMethodFormater{
         sb.append(")");
         sb.append(helper._static(method.getModifiers()));
         sb.append(
-            method.getReturnType().getSimpleName().equals("void") ? "" : " : " + method.getReturnType().getSimpleName()
+            method.getReturnType().getSimpleName().equals("void") ? "" : " " + method.getReturnType().getSimpleName()
         );
         return sb.toString();
     }
