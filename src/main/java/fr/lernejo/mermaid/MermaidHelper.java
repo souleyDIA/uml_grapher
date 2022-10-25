@@ -1,12 +1,10 @@
 package fr.lernejo.mermaid;
 
-import java.lang.reflect.Member;
 import java.lang.reflect.Modifier;
 
 public class MermaidHelper {
     
-    public String Visibility(Member member) {
-        int modifiers = member.getModifiers();
+    public String Visibility(int modifiers) {
         if (java.lang.reflect.Modifier.isPublic(modifiers))
             return "+";
         if (java.lang.reflect.Modifier.isProtected(modifiers))
@@ -17,8 +15,7 @@ public class MermaidHelper {
         return "~";
     }
 
-    public String _static(Member member) {
-        int modifiers = member.getModifiers();
+    public String _static(int modifiers) {
         return Modifier.isStatic(modifiers) ? "$" : "";
     }
 }
