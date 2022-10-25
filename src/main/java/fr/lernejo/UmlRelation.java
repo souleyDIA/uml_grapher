@@ -23,7 +23,7 @@ public class UmlRelation {
         if (obj == null || obj.getClass() != getClass())
             return false;
         UmlRelation other = (UmlRelation) obj;
-        return from.equals(other.from) && to.equals(other.to) && type.equals(other.type);
+        return Objects.equals(to, other.to) && Objects.equals(from, other.from) && type == other.type;
     }
 
     public enum Type {
