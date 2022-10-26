@@ -25,14 +25,9 @@ public class UmlRelationAnalysis {
     }
 
     public void analyze(Class<?> cls) {
-        
         if(isNullOrObject(cls)) {
             return;
         }
-        if(classes.contains(cls)) {
-            return;
-        }
-        
         classes.add(cls);
         for (Class<?> i : cls.getInterfaces()) {
             relations.add(new UmlRelation(cls, i, cls.isInterface() ? UmlRelation.Type.implement : UmlRelation.Type.extend));

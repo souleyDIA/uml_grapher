@@ -9,12 +9,12 @@ public class UmlGraph {
     public UmlGraph(Class<?> cls) {
         this.cls = cls;
     }
-    RelationFormater formater = new RelationFormater(); 
-    MermaidHelper helper = new MermaidHelper();
-    FieldFormater fieldFormater = new FieldFormater(helper); 
-    MethodFormater methodFormater = new MethodFormater(new ParameterFormater());
-    InterfaceFormater interfaceFormater = new InterfaceFormater();  
-    ClassFormater classFormater = new ClassFormater(fieldFormater, methodFormater, interfaceFormater);   
+    private final RelationFormater formater = new RelationFormater(); 
+    private final MermaidHelper helper = new MermaidHelper();
+    private final FieldFormater fieldFormater = new FieldFormater(helper); 
+    private final MethodFormater methodFormater = new MethodFormater(new ParameterFormater());
+    private final InterfaceFormater interfaceFormater = new InterfaceFormater();  
+    private final ClassFormater classFormater = new ClassFormater(fieldFormater, methodFormater, interfaceFormater);   
 
     public String as(GraphType type) {
         if (type == GraphType.Mermaid) {
