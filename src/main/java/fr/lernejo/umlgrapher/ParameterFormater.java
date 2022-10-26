@@ -1,4 +1,4 @@
-package fr.lernejo.mermaid;
+package fr.lernejo.umlgrapher;
 
 import java.lang.reflect.Parameter;
 import java.util.List;

@@ -1,4 +1,4 @@
-package fr.lernejo.mermaid;
+package fr.lernejo.umlgrapher;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
