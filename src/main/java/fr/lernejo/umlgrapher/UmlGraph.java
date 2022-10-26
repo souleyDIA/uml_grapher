@@ -8,7 +8,7 @@ import fr.lernejo.formater.IConstructor;
 
 public class UmlGraph {
 
-    private final List<Class>    cls;
+    private final Class<?> [] cls;
 
     
     private final RelationFormater formater = new RelationFormater(); 
@@ -20,7 +20,7 @@ public class UmlGraph {
     private final ClassFormater classFormater = new ClassFormater(fieldFormater, methodFormater, interfaceFormater, constructorFormater);   
 
 
-    public UmlGraph(List<Class> classes) {        
+    public UmlGraph(Class<?> ...classes) {        
         this.cls = classes;
 
     }

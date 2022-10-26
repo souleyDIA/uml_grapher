@@ -4,8 +4,6 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Callable;
 
 @Command(name = "java -jar umlgrapher.jar", mixinStandardHelpOptions = true, version = "1.0", description = "UMLGrapher")
@@ -13,7 +11,7 @@ public class Launcher implements Callable<Integer> {
 
     @Option(names = {"-c", "--classes"}, required = true, description = "Classes to analyse")
     // array of classes to analyse
-    private List<Class> classes = new ArrayList<>();
+    private final Class<?> [] classes = new Class<?>[0];
 
     @Option(names = {"-g", "--graph-type"}, defaultValue = "Mermaid", description = "Graph type")
     private final GraphType graphType = GraphType.Mermaid;
