@@ -3,18 +3,24 @@ package fr.lernejo.umlgrapher;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import fr.lernejo.formater.IConstructor;
+
 public class UmlGraph {
 
     private final Class<?> cls;
-    private final RelationFormater formater;
-    private final ClassFormater classFormater; 
+    
+    private final RelationFormater formater = new RelationFormater(); 
+    private final MermaidHelper helper = new MermaidHelper();
+    private final FieldFormater fieldFormater = new FieldFormater(helper); 
+    private final MethodFormater methodFormater = new MethodFormater(new ParameterFormater());
+    private final InterfaceFormater interfaceFormater = new InterfaceFormater();  
+    private final IConstructor constructorFormater = new ConstructorFormater(new ParameterFormater(), helper);
+    private final ClassFormater classFormater = new ClassFormater(fieldFormater, methodFormater, interfaceFormater, constructorFormater);   
 
-    public UmlGraph(Class<?> cls, 
-                    RelationFormater formater, 
-                    ClassFormater classFormater) {        
+
+    public UmlGraph(Class<?> cls) {        
         this.cls = cls;
-        this.formater = formater;
-        this.classFormater = classFormater;
+
     }
  
     public String as(GraphType type) {
