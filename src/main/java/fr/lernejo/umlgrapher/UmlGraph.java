@@ -23,18 +23,24 @@ public class UmlGraph {
 
     public String as(GraphType type) {
         if (type == GraphType.Mermaid) {
-            UmlRelationAnalysis analysis = new UmlRelationAnalysis(List.of(cls));
-            RelationFormater formater = new RelationFormater();
+            // UmlRelationAnalysis analysis = new UmlRelationAnalysis(List.of(cls));
+            RelationFormater formater = new RelationFormater(); 
             MermaidHelper helper = new MermaidHelper();
             FieldFormater fieldFormater = new FieldFormater(helper); 
             MethodFormater methodFormater = new MethodFormater(new ParameterFormater());
             InterfaceFormater interfaceFormater = new InterfaceFormater();  
             ClassFormater classFormater = new ClassFormater(fieldFormater, methodFormater, interfaceFormater);
 
-            return "classDiagram" + Stream.of(
-                analysis.listRelations().stream().map(formater::format).collect(Collectors.joining("\n")),
-                classFormater.format(cls)
-            ).collect(Collectors.joining("\n"));
+            String classDiagram = Stream.of(cls.getDeclaredClasses())
+                .map(classFormater::format)
+                .collect(Collectors.joining("\n"));
+            
+            String classDiagramOfGivenClass = classFormater.format(cls);
+             
+            String relationDiagram = formater.format(cls);
+            
+            return  "classDiagram\n" + classDiagram + "\n" + classDiagramOfGivenClass + "\n" + relationDiagram + "\n";
+            
             
         }
         return "";

@@ -15,7 +15,7 @@ public class InterfaceFormater implements IInterfaceFormater {
         if(Modifier.isAbstract(modifiers)) {
             return "<<abstract>>\n";
         }
-        
+
         return "";
     }
 }

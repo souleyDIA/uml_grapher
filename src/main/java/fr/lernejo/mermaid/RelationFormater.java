@@ -1,30 +1,55 @@
 package fr.lernejo.mermaid;
 
 import fr.lernejo.UmlRelation;
+import fr.lernejo.UmlRelation.Type;
 import fr.lernejo.formater.IRelationFormater;
 import java.lang.reflect.Field;
 
 
 public class RelationFormater implements IRelationFormater {
     
+    
     @Override
-    public String format(UmlRelation relation) {  
+    public String format(Class<?> clazz) {  
         StringBuilder sb = new StringBuilder();
-        Field type;
-        try {
-            sb = new StringBuilder(relation.getClass().getDeclaredField("from").getName());
-            type = relation.getClass().getDeclaredField("type");
-            type.setAccessible(true);
+        
+         if(clazz.isInterface()) {
+            sb.append(clazz.getSimpleName());
+            sb.append(" ..|> ");
+            sb.append(" : ");
+            sb.append(clazz.getName());
+            sb.append("");
 
-            switch (type.toString()) {
-             case "extend": sb.append(" --> "); break;
-             case "implement": sb.append(" ..> "); break;
+        } else {
+            Class<?> c = clazz.getSuperclass();
+            if(c != null) {
+                sb.append(clazz.getSimpleName());
+                sb.append(" --|> ");
+                sb.append(" : ");
+                sb.append(clazz.getName());
+                sb.append("");
             }
-            sb.append(relation.getClass().getDeclaredField("to").getName());
-
-        } catch (NoSuchFieldException | SecurityException e) {
-            e.printStackTrace();
         }
+
+        for (Field field : clazz.getDeclaredFields()) {
+            if (field.getType().isAssignableFrom(clazz)) {
+                sb.append(clazz.getSimpleName());
+                sb.append(" --|> ");
+                sb.append(field.getType().getSimpleName());
+                sb.append(" : ");
+                sb.append(field.getName());
+                sb.append("");
+            }
+            else {
+                sb.append(clazz.getSimpleName());
+                sb.append(" ..|> ");
+                sb.append(field.getType().getSimpleName());
+                sb.append(" : ");
+                sb.append(field.getName());
+                sb.append("");
+            }
+
+    }
         return sb.toString();
     }
 }
