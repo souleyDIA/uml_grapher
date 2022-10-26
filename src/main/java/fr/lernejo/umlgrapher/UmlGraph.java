@@ -32,7 +32,7 @@ public class UmlGraph {
                 .map(classFormater::format)
                 .collect(Collectors.joining("\n"));
                 sb.append(classDiagram);
-                sb.append(formater.format(c));
+                //sb.append(formater.format(c));
             }
             return sb.toString();
         }

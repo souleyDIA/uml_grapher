@@ -35,8 +35,7 @@ public class ClassFormater implements IClassFormater {
         sb.append("{\n");
         sb.append(
             Stream.of(member(clazz).split("\n")).filter(s -> !s.isEmpty())
-                .collect(Collectors.joining("\n\t", "\t", ""))
-                
+                .collect(Collectors.joining("\n\t", "\t", ""))  
         );
         sb.append("\n}");
         return sb.toString();
@@ -50,16 +49,11 @@ public class ClassFormater implements IClassFormater {
             clazz.getDeclaredConstructors()
         ).flatMap(Stream::of)
             .map(m -> {
-                if (m instanceof Field) {
-                    return fieldFormater.format((Field) m);
-                } else if (m instanceof Method) {
-                    return methodFormater.format((Method) m);
-                } else if (m instanceof Class) {
-                    return interfaceFormater.format((Class<?>) m);
-                }
-                else if (m instanceof Constructor) {
-                    return constructorFormater.format((Constructor<?>) m);
-                }
+                if (m instanceof Field) return fieldFormater.format((Field) m);
+                else if (m instanceof Method) return methodFormater.format((Method) m);
+                else if (m instanceof Class) return interfaceFormater.format((Class<?>) m);
+                else if (m instanceof Constructor) return constructorFormater.format((Constructor<?>) m);
+                
                 return "";
             }).collect(Collectors.joining("\n"));
 
