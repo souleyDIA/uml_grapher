@@ -5,6 +5,8 @@ import java.util.stream.Stream;
 
 import fr.lernejo.formater.IClassFormater;
 import fr.lernejo.formater.IFieldFormater;
+import fr.lernejo.formater.IInterfaceFormater;
+import fr.lernejo.formater.IMethodFormater;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -12,8 +14,15 @@ import java.lang.reflect.Method;
 
 public class ClassFormater implements IClassFormater {
   
-    private final IFieldFormater fieldFormater = new FieldFormater();
-    private final MethodFormater methodFormater = new MethodFormater();
+    private final IFieldFormater fieldFormater;
+    private final IMethodFormater methodFormater;
+    private final IInterfaceFormater interfaceFormater;
+
+    public ClassFormater(IFieldFormater fieldFormater, MethodFormater methodFormater, IInterfaceFormater interfaceFormater) {
+        this.fieldFormater = fieldFormater;
+        this.methodFormater = methodFormater;
+        this.interfaceFormater = interfaceFormater;
+    }
 
     @Override
     public String format(Class<?> clazz) {
@@ -32,14 +41,19 @@ public class ClassFormater implements IClassFormater {
     protected String member(Class<?> clazz) {
         return Stream.of(
             clazz.getDeclaredFields(),
-            clazz.getDeclaredMethods()
-        ).map(
-            Stream::of
-        ).flatMap(
-            s -> s
-        ).map(
-            m -> m instanceof Field ? fieldFormater.format((Field) m) : methodFormater.format((Method) m)
-        ).collect(Collectors.joining("\n"));
+            clazz.getDeclaredMethods(),
+            clazz.getInterfaces()
+        ).flatMap(Stream::of)
+            .map(m -> {
+                if (m instanceof Field) {
+                    return fieldFormater.format((Field) m);
+                } else if (m instanceof Method) {
+                    return methodFormater.format((Method) m);
+                } else if (m instanceof Class) {
+                    return interfaceFormater.format((Class<?>) m);
+                }
+                return "";
+            }).collect(Collectors.joining("\n"));
 
     }
 }

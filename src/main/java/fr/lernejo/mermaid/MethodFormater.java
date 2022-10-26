@@ -8,7 +8,11 @@ import fr.lernejo.formater.IMethodFormater;
 
 public class MethodFormater implements IMethodFormater{
     
-    private final ParameterFormater parameterFormater = new ParameterFormater();
+    private final ParameterFormater parameterFormater;
+
+    public MethodFormater(ParameterFormater parameterFormater) {
+        this.parameterFormater = parameterFormater;
+    }
 
     @Override
     public String format(Method method) {
