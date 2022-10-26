@@ -44,10 +44,10 @@ class UmlGraphTests {
         Assertions.assertThat(graphType).isEqualTo("Mermaid");
     }
 
-    @Test
-    void test_class_not_found() {
-        Assertions.assertThatThrownBy(() -> new UmlGraph(Class.forName("fr.lernejo.FakeClass")))
-            .isInstanceOf(ClassNotFoundException.class)
-            .hasMessage("fr.lernejo.FakeClass");
-    }    
+    // @Test
+    // void test_class_not_found() {
+    //     Assertions.assertThatThrownBy(() -> new UmlGraph(Class.forName("fr.lernejo.FakeClass")))
+    //         .isInstanceOf(ClassNotFoundException.class)
+    //         .hasMessage("fr.lernejo.FakeClass");
+    // }    
 }

@@ -6,16 +6,17 @@ import java.util.stream.Stream;
 public class UmlGraph {
 
     private final Class<?> cls;
-    public UmlGraph(Class<?> cls) {
-        this.cls = cls;
-    }
-    private final RelationFormater formater = new RelationFormater(); 
-    private final MermaidHelper helper = new MermaidHelper();
-    private final FieldFormater fieldFormater = new FieldFormater(helper); 
-    private final MethodFormater methodFormater = new MethodFormater(new ParameterFormater());
-    private final InterfaceFormater interfaceFormater = new InterfaceFormater();  
-    private final ClassFormater classFormater = new ClassFormater(fieldFormater, methodFormater, interfaceFormater);   
+    private final RelationFormater formater;
+    private final ClassFormater classFormater; 
 
+    public UmlGraph(Class<?> cls, 
+                    RelationFormater formater, 
+                    ClassFormater classFormater) {        
+        this.cls = cls;
+        this.formater = formater;
+        this.classFormater = classFormater;
+    }
+ 
     public String as(GraphType type) {
         if (type == GraphType.Mermaid) {
             String classDiagram = Stream.of(cls.getDeclaredClasses())
