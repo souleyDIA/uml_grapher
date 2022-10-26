@@ -7,7 +7,7 @@ import fr.lernejo.formater.IConstructor;
 
 public class UmlGraph {
 
-    private final Class<?> cls;
+    private final Class<?> [] cls;
     
     private final RelationFormater formater = new RelationFormater(); 
     private final MermaidHelper helper = new MermaidHelper();
@@ -18,21 +18,27 @@ public class UmlGraph {
     private final ClassFormater classFormater = new ClassFormater(fieldFormater, methodFormater, interfaceFormater, constructorFormater);   
 
 
-    public UmlGraph(Class<?> cls) {        
+    public UmlGraph(Class<?> ...cls) {        
         this.cls = cls;
 
     }
  
     public String as(GraphType type) {
-        if (type == GraphType.Mermaid) {
-            String classDiagram = Stream.of(cls.getDeclaredClasses())
-            .map(classFormater::format)
-            .collect(Collectors.joining("\n"));
-
-            String classDiagramOfGivenClass = classFormater.format(cls);
-            String relationDiagram = formater.format(cls);
-            return  "classDiagram\n" + classDiagram + "\n" + classDiagramOfGivenClass + "\n" + relationDiagram + "\n"; 
+        if(type == GraphType.Mermaid){
+            StringBuilder sb = new StringBuilder();
+            sb.append("classDiagram\n");
+            for (Class<?> c : cls) {
+                String classDiagram = Stream.of(c.getDeclaredClasses())
+                .map(classFormater::format)
+                .collect(Collectors.joining("\n"));
+                sb.append(classDiagram);
+                sb.append(formater.format(c));
+            }
+            return sb.toString();
         }
-        return "";
+        else{
+            return "";
+        }
     }
+
 } 
