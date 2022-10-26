@@ -4,21 +4,24 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 @Command(name = "java -jar umlgrapher.jar", mixinStandardHelpOptions = true, version = "1.0", description = "UMLGrapher")
 public class Launcher implements Callable<Integer> {
 
     @Option(names = {"-c", "--classes"}, required = true, description = "Classes to analyse")
-    private String classes;
+    // array of classes to analyse
+    private List<Class> classes = new ArrayList<>();
 
     @Option(names = {"-g", "--graph-type"}, defaultValue = "Mermaid", description = "Graph type")
-    private String graphType;
+    private final GraphType graphType = GraphType.Mermaid;
 
     @Override
     public Integer call() throws Exception {
-        UmlGraph graph = new UmlGraph(Class.forName(classes));
-        System.out.println(graph.as(GraphType.valueOf(graphType)));
+        UmlGraph graph = new UmlGraph(classes);
+        System.out.println(graph.as(graphType));
         return 0;
     }
 

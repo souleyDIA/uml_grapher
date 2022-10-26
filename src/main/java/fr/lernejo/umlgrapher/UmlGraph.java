@@ -1,5 +1,6 @@
 package fr.lernejo.umlgrapher;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -7,7 +8,8 @@ import fr.lernejo.formater.IConstructor;
 
 public class UmlGraph {
 
-    private final Class<?> [] cls;
+    private final List<Class>    cls;
+
     
     private final RelationFormater formater = new RelationFormater(); 
     private final MermaidHelper helper = new MermaidHelper();
@@ -18,8 +20,8 @@ public class UmlGraph {
     private final ClassFormater classFormater = new ClassFormater(fieldFormater, methodFormater, interfaceFormater, constructorFormater);   
 
 
-    public UmlGraph(Class<?> ...cls) {        
-        this.cls = cls;
+    public UmlGraph(List<Class> classes) {        
+        this.cls = classes;
 
     }
  
