@@ -9,7 +9,7 @@
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "args": ["-c", "fr.lernejo.Singleton"],
+            "args": ["-c", "fr.lernejo.Image"],
             },
         {
             "type": "java",
