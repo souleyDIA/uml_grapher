@@ -7,23 +7,40 @@ import fr.lernejo.umlgrapher.UmlGraph;
 import fr.lernejo.umlgrapher.GraphType;
 
 class UmlGraphTests {
-    // @Test
-    //     void empty_interface_with_no_relation() {
-    //         UmlGraph graph = new UmlGraph(Machin.class);
+    @Test
+        void empty_interface_with_no_relation() {
+            UmlGraph graph = new UmlGraph(Machin.class);
     
-    //         String output = graph.as(GraphType.Mermaid);
+            String output = graph.as(GraphType.Mermaid);
     
-    //         Assertions.assertThat(output).isEqualTo("""
-    //             classDiagram
-    //             class Machin {
-    //                 <<interface>>
-    //             }
-    //             """);
-    //     }
+            Assertions.assertThat(output).isEqualTo("""
+                classDiagram
+                class Machin {
+                    <<interface>>
+                }
+                """);
+        }
     
-    //     interface Machin {
-    //     }
+        interface Machin {
+        }
 
+        public sealed interface Living {
+            sealed interface Animal extends Living {
+                final class Ant implements Animal {
+                }
+        
+                final class Cat implements Animal {
+                }
+            }
+        
+            sealed interface Plant extends Living {
+                sealed interface Tree extends Plant {
+                    final class Alder implements Tree {
+                    }
+                }
+            }
+        }
+        
     @Test
     void parse_arguments() {
         String[] args = new String[] {"-c", "fr.lernejo.Machin", "-g", "Mermaid",};

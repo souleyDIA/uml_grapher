@@ -1,10 +1,8 @@
 package fr.lernejo.umlgrapher;
 
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import fr.lernejo.UmlRelationAnalysis;
 import fr.lernejo.formater.IConstructor;
 
 public class UmlGraph {
@@ -31,13 +29,14 @@ public class UmlGraph {
             StringBuilder sb = new StringBuilder();
             sb.append("classDiagram\n");
             for (Class<?> c : cls) {
-                String classDiagram = Stream.of(c)
+                String classDiagram = Stream.of(c.getClasses())
                 .map(classFormater::format)
                 .collect(Collectors.joining("\n"));
                 sb.append(classDiagram);
                 sb.append("\n");
                 // UmlRelationAnalysis ra = new UmlRelationAnalysis(List.of(c));
                 // sb.append(formater.format(ra.listClasses()));
+                
             }
             return sb.toString();
         }

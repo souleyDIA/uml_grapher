@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
 
 
 public class ClassFormater implements IClassFormater {
-  
+   
     private final IFieldFormater fieldFormater;
     private final IMethodFormater methodFormater;
     private final IInterfaceFormater interfaceFormater;
