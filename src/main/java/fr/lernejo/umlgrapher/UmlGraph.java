@@ -36,8 +36,8 @@ public class UmlGraph {
                 .collect(Collectors.joining("\n"));
                 sb.append(classDiagram);
                 sb.append("\n");
-                UmlRelationAnalysis ra = new UmlRelationAnalysis(List.of(c));
-                sb.append(formater.format(ra.listClasses()));
+                // UmlRelationAnalysis ra = new UmlRelationAnalysis(List.of(c));
+                // sb.append(formater.format(ra.listClasses()));
             }
             return sb.toString();
         }
