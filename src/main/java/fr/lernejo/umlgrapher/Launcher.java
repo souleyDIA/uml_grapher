@@ -11,7 +11,7 @@ public class Launcher implements Callable<Integer> {
 
     @Option(names = {"-c", "--classes"}, required = true, description = "Classes to analyse")
     // array of classes to analyse
-    private final Class<?> [] classes = new Class<?>[0];
+    private final Class<?> [] classes = null;
 
     @Option(names = {"-g", "--graph-type"}, defaultValue = "Mermaid", description = "Graph type")
     private final GraphType graphType = GraphType.Mermaid;
