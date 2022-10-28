@@ -31,7 +31,7 @@ public class UmlGraph {
             StringBuilder sb = new StringBuilder();
             sb.append("classDiagram\n");
             for (Class<?> c : cls) {
-                String classDiagram = Stream.of(c.getClass())
+                String classDiagram = Stream.of(c)
                 .map(classFormater::format)
                 .collect(Collectors.joining("\n"));
                 sb.append(classDiagram);
