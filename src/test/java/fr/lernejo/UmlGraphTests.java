@@ -81,6 +81,19 @@ class UmlGraphTests {
                 }
             }
         }
+
+    @Test void class_with_relation() {
+        UmlGraph graph = new UmlGraph(Image.class);
+
+        String output = graph.as(GraphType.Mermaid);
+
+        Assertions.assertThat(output).isEqualTo("""
+            classDiagram
+            class Image {
+                <<interface>>
+            }RealImage <|.. Image :implements
+            LazyLoadedImage <|.. Image :implements""");
+    }
         
     @Test
     void parse_arguments() {

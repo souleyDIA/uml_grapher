@@ -18,7 +18,6 @@ public class ClassFormater implements IClassFormater {
         sb.append(clazz.getSimpleName());
         sb.append(" {\n");
         sb.append(interfaceFormater.format(clazz));
-        //if the class has members (fields or methods) 
         sb.append("\n}");
         return sb.toString();
     }
