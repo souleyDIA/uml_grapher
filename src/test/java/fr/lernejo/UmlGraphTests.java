@@ -120,5 +120,20 @@ class UmlGraphTests {
         Assertions.assertThatThrownBy(() -> new UmlGraph(Class.forName("fr.lernejo.FakeClass")))
             .isInstanceOf(ClassNotFoundException.class)
             .hasMessage("fr.lernejo.FakeClass");
-    }    
+    }
+
+    // add more tests here to get a better code coverage
+    @Test
+    void parent_class() {
+        UmlGraph graph = new UmlGraph(Living.class);
+
+        String output = graph.as(GraphType.Mermaid);
+
+        Assertions.assertThat(output).isEqualTo("""
+            classDiagram
+            class Living {
+                <<interface>>
+            }Animal <|.. Living :implements
+            Plant <|.. Living :implements""");
+    }
 }
