@@ -28,15 +28,9 @@ public class UmlGraph {
         if(type == GraphType.Mermaid){
             StringBuilder sb = new StringBuilder();
             sb.append("classDiagram\n");
-            for (Class<?> c : cls) {
-                String classDiagram = Stream.of(c.getClasses())
-                .map(classFormater::format)
-                .collect(Collectors.joining("\n"));
-                sb.append(classDiagram);
-                sb.append("\n");
-                // UmlRelationAnalysis ra = new UmlRelationAnalysis(List.of(c));
-                // sb.append(formater.format(ra.listClasses()));
-                
+            for(Class<?> c : cls){
+                sb.append(classFormater.format(c));
+                sb.append(formater.format(c));
             }
             return sb.toString();
         }

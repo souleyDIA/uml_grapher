@@ -10,10 +10,10 @@ public class InterfaceFormater implements IInterfaceFormater {
     public String format(Class<?> clazz) {
         int modifiers = clazz.getModifiers();
         if(Modifier.isInterface(modifiers)) {
-            return "<<interface>>\n";
+            return "    <<interface>>";
         }
         if(Modifier.isAbstract(modifiers)) {
-            return "<<abstract>>\n";
+            return "<<abstract>>";
         }
 
         return "";

@@ -17,8 +17,7 @@ class UmlGraphTests {
                 classDiagram
                 class Machin {
                     <<interface>>
-                }
-                """);
+                }""");
         }
     
         interface Machin {

@@ -32,11 +32,8 @@ public class ClassFormater implements IClassFormater {
     public String format(Class<?> clazz) {
         StringBuilder sb = new StringBuilder("class ");
         sb.append(clazz.getSimpleName());
-        sb.append("{\n");
-        sb.append(
-            Stream.of(member(clazz).split("\n")).filter(s -> !s.isEmpty())
-                .collect(Collectors.joining("\n\t", "\t", ""))  
-        );
+        sb.append(" {\n");
+        sb.append(interfaceFormater.format(clazz));
         sb.append("\n}");
         return sb.toString();
     }
