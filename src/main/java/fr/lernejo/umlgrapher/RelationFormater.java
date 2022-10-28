@@ -24,14 +24,11 @@ public class RelationFormater implements IRelationFormater {
             .get(type)
             .asClass(this.getClass().getClassLoader(), type.getClassLoader())
         );
-        // format the relations between the classes and interfaces 
-        //if the class is an interface, get all the classes that implement it
         if(type.isInterface()){
             return subTypes.stream().map(c -> c.getSimpleName() + " <|.. " +type.getSimpleName() + " :implements").collect(Collectors.joining("\n"));
         }
-        // format extends relations
         else if(type.getSuperclass() != null){
-            return type.getSimpleName() + " <|-- " + type.getSuperclass().getSimpleName() + " :extends";
+            return type.getSimpleName() + " <|-- " + type.getSuperclass().getSimpleName() + " :extends" + "\n";
         }
         return "";
     }
