@@ -29,15 +29,12 @@ public class UmlRelationAnalysis {
             return;
         }
         classes.add(cls);
+        Class<?> parent = cls.getSuperclass();
+        if(!isNullOrObject(parent)) {
+            relations.add(new UmlRelation(cls, parent, UmlRelation.Type.extend));
+        }
         for (Class<?> i : cls.getInterfaces()) {
             relations.add(new UmlRelation(cls, i, cls.isInterface() ? UmlRelation.Type.implement : UmlRelation.Type.extend));
-            analyze(i);
-        }
-        if (cls.getSuperclass() != null) {
-            if (!cls.getSuperclass().equals(Object.class)) {
-                relations.add(new UmlRelation(cls, cls.getSuperclass(), UmlRelation.Type.extend));
-                analyze(cls.getSuperclass());
-            }
         }
     }
 
